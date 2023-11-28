@@ -1,0 +1,23 @@
+package com.example.backend.topic;
+
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping(value = "/javainuse-rabbitmq/topic/")
+public class TestController {
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
+
+    @GetMapping(value = "/producer")
+    public String producer(@RequestParam("exchangeName") String exchange, @RequestParam("routingKey") String routingKey,
+                           @RequestParam("messageData") String messageData) {
+
+        amqpTemplate.convertAndSend(exchange, routingKey, messageData);
+
+        return "Message sent to the RabbitMQ Topic Exchange Successfully";
+    }
+}
+
