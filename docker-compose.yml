@@ -1,9 +1,0 @@
-version: '3'
-services:
-  frontend:
-    build:
-      context: src
-      dockerfile: src/Dockerfile
-    network_mode: host
-    environment:
-      - REACT_APP_API_URL=http://localhost:3000
