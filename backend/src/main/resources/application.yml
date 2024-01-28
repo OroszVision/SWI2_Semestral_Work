@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/swi2_app
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  main:
+    allow-bean-definition-overriding: true
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+jwt:
+  secret: 6D8586CDBDC816E3ED9541A1F17CE6D8586CDBDC816E3ED9541A1F17CE
+  expiration:
+    ms: 600000
+  refresh-expiration:
+    ms: 86400000

@@ -4,7 +4,7 @@ services:
   postgres:
     image: 'postgres:latest'
     environment:
-      - 'POSTGRES_DB=postgres'
+      - 'POSTGRES_DB=swi2_app'
       - 'POSTGRES_PASSWORD=postgres'
       - 'POSTGRES_USER=postgres'
     ports:
