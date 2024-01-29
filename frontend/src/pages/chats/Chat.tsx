@@ -11,10 +11,15 @@ import {
     MDBTextArea,
     MDBCardHeader,
 } from "mdb-react-ui-kit";
+import {Button} from "react-bootstrap";
 
 export default function App() {
     return (
         <MDBContainer fluid className="py-5" style={{ backgroundColor: "#eee" }}>
+            <div className="d-flex justify-content-lg-start">
+                <h3 className="m-1 mb-2">Create new chat</h3>
+                <Button className="btn-primary" type="submit">+</Button>{' '}
+            </div>
             <MDBRow>
                 <MDBCol md="6" lg="5" xl="4" className="mb-4 mb-md-0">
                     <h5 className="font-weight-bold mb-3 text-center text-lg-start">
@@ -263,5 +268,6 @@ export default function App() {
                 </MDBCol>
             </MDBRow>
         </MDBContainer>
+
     );
 }

@@ -8,16 +8,17 @@ import Chat from "./pages/chats/Chat";
 import Group_Chat from "./pages/chats/Group_Chat";
 import Profile from "./pages/profile/Profile";
 import Login from "./auth/Login";
-import PasswordReset from "./auth/PasswordReset";
 import Register from "./auth/Register";
 import NavigationBar from "./pages/navigation/NavigationBar";
-import Home from "./pages/home/Home"; // Import the NavigationBar component
+import Home from "./pages/home/Home";
+import LogoutPage from "./auth/Logout"; // Import the NavigationBar component
 
 const SOCKET_URL = 'http://localhost:8080/ws-message';
 
 interface Message {
     message: string;
 }
+
 const App: React.FC = () => {
     return (
         <Router>
@@ -45,13 +46,14 @@ const App: React.FC = () => {
                         <Route path="/group_chat" element={<Group_Chat />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/login/*" element={<Login />} />
-                        <Route path="/password-reset" element={<PasswordReset />} />
                         <Route path="/register/*" element={<Register />} />
+                        <Route path="/logout" element={<LogoutPage />} />
                         <Route path="*" element={<h2>Page not found!</h2>} />
                     </Routes>
                 </Container>
             </>
         </Router>
+
     );
 };
 

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/swi2_app
+    url: jdbc:postgresql://localhost:5432/swi2chatapp
     username: postgres
     password: postgres
   jpa:

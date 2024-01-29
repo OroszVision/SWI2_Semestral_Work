@@ -3,9 +3,20 @@ import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import {logout} from "../../auth/AuthService";
 
 const NavigationBar: React.FC = () => {
     const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        try {
+            await logout(); // Assuming your logout function returns a promise
+            // Clear any user-related state or perform additional actions if needed
+            navigate('/login'); // Redirect to the login page or any other page after logout
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
+    };
 
     return (
         <Navbar bg="light" expand="md" className="mb-4">
@@ -30,11 +41,9 @@ const NavigationBar: React.FC = () => {
                             </svg></Nav.Link>
                         </LinkContainer>
                         <LinkContainer to="/login">
-                            <Nav.Link>Logout  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-box-arrow-right mb-1"  viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
-                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                            <Nav.Link onClick={handleLogout}>Logout <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-box-arrow-right mb-1"  viewBox="0 0 16 16">
+                                {/* ... (logout icon) */}
                             </svg></Nav.Link>
-
                         </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
