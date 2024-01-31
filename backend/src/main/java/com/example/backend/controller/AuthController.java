@@ -3,6 +3,7 @@ package com.example.backend.controller;
 import com.example.backend.auth.AuthRequest;
 import com.example.backend.auth.AuthResponse;
 import com.example.backend.auth.RegistrationRequest;
+import com.example.backend.service.LogoutService;
 import com.example.backend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -23,6 +24,7 @@ import java.io.IOException;
 public class AuthController {
 
     private final UserService userService;
+    private final LogoutService logoutService;
 
     @Operation(
             description = "Register user",
@@ -49,6 +51,18 @@ public class AuthController {
     ) {
         return ResponseEntity.ok(userService.authenticate(request));
     }
+
+    @PostMapping
+    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
+
+        try {
+            logoutService.logout(request, response, null);  // Pass null for authentication since it's not needed for logout
+            return ResponseEntity.ok("Logout successful");
+        }catch(RuntimeException e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @PostMapping("/refresh-token")
     public void refreshToken(
