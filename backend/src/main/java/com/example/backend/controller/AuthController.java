@@ -47,9 +47,14 @@ public class AuthController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthResponse> authenticate(
-            @RequestBody @Valid AuthRequest request
+            @RequestBody AuthRequest request
     ) {
-        return ResponseEntity.ok(userService.authenticate(request));
+        try {
+            AuthResponse authenticationResponse = userService.authenticate(request);
+            return ResponseEntity.ok(authenticationResponse);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
     }
 
     @PostMapping
