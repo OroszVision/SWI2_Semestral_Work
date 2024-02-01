@@ -343,26 +343,35 @@ const MainPage = () => {
         });
     }
     function renderChatButton(c: ChatObject) {
-
         let displayedMessage = "";
-        if(c.messages && c.messages.length > 0){
+
+        if (c.messages && c.messages.length > 0) {
             const message = c.messages[c.messages.length - 1];
 
-            if(message.type === "Text"){
-                displayedMessage  = message.sender.firstName + ": " + message.content;
-            }
-            else {
+            if (message.type === "Text") {
+                displayedMessage = message.sender.firstName + ": " + message.content;
+            } else {
                 displayedMessage = message.content;
             }
-            if(displayedMessage.length > 15) {
+
+            if (displayedMessage.length > 15) {
                 displayedMessage = displayedMessage.substring(0, 15) + "...";
             }
         }
-        return <Button onClick={(e) => openChat(e, c)} className={"w-100 mt-1 mb-1 text-start"} key={c.chat.exchange}>
-            <span className={"h5"}> {c.chat.chatName} </span><br/>
-            <span className={c.seen? "" : "fw-bold"}> {displayedMessage} </span>
-        </Button>;
+
+        return (
+            <Button
+                onClick={(e) => openChat(e, c)}
+                className={"w-100 mt-1 mb-1 text-start"}
+                key={c.chat.exchange}
+                style={{ background: 'black', color: 'white' }}
+            >
+                <span className={"h5"}> {c.chat.chatName} </span><br />
+                <span className={c.seen ? "" : "fw-bold"}> {displayedMessage} </span>
+            </Button>
+        );
     }
+
     const renderTooltip = (props:ChatUser) => (
         <Card className={"position-absolute py-2 px-3"}>
             <Card.Title><Icon.PersonFill/>{" " +props.email}</Card.Title>
@@ -663,7 +672,7 @@ const MainPage = () => {
                         </Form>
                     </Col>
                     <Col xs={2} sm={1}>
-                        <Button type="submit" onClick={handleSend}>
+                        <Button type="submit" onClick={handleSend} style={{ background: 'black', color: 'white' }}>
                             Send
                         </Button>
                     </Col>
