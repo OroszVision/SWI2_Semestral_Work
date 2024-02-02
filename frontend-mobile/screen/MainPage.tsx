@@ -246,13 +246,13 @@ const MainPage: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 16,
+    padding: 20,
   },
   logoutButton: {
     flex: 1,
-    padding: 10,
+    padding: 15,
     backgroundColor: 'red',
     borderRadius: 5,
   },
@@ -282,9 +282,10 @@ const styles = StyleSheet.create({
   },
   createButton: {
     flex: 1,
-    padding: 10,
-    backgroundColor: 'blue',
+    padding: 15,
+    backgroundColor: 'black',
     borderRadius: 5,
+    marginRight:10
   },
   createButtonText: {
     color: 'white',

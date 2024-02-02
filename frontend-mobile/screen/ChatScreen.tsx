@@ -33,6 +33,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         heartbeatOutgoing: 4000,
       });
 
+      
+
       stompClient.current.onConnect = () => {
         console.log('StompJS connected');
         stompClient.current?.subscribe(`/topic/chat/${selectedChat.chat.chatId}`, onMessageReceived);
@@ -66,6 +68,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       }
     };
   }, [selectedChat]);
+
+  
 
   const onMessageReceived = (message) => {
     const receivedMessage: DisplayedMessage = JSON.parse(message.body);
@@ -122,7 +126,6 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         if (stompClient.current && stompClient.current.connected) {
           stompClient.current.send(`/app/chat/${selectedChat.chat.chatId}`, {}, JSON.stringify(newMessage));
         } else {
-          console.error('StompJS client not connected. Sending message through HTTP.');
 
           const token = await AsyncStorage.getItem('access_token');
 
@@ -161,14 +164,16 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1, maxHeight: 3000 }}>
+          <View style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1, maxHeight: 3000, padding: 10, marginTop: 50 }}>
         {messages.map((msg, index) => (
-          <View key={index} style={{ marginBottom: 10 }}>
-            <Text>{msg.sender.firstName}: {msg.content}</Text>
+          <View key={index} style={{ marginBottom: 10, backgroundColor: '#e1e1e1', padding: 10, borderRadius: 8 }}>
+            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#333' }}>{msg.sender.firstName}:</Text>
+            <Text style={{ fontSize: 16, color: '#555' }}>{msg.content}</Text>
           </View>
         ))}
       </ScrollView>
+
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 10 }}>
         <TextInput
           style={{ flex: 1, height: 50, borderColor: 'gray', borderWidth: 1, marginRight: 10, padding: 10 }}
@@ -192,7 +197,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             onChangeText={(text) => setNewUserEmail(text)}
             value={newUserEmail}
           />
-          <Button title="Add User" onPress={handleAddUserToChat} />
+          <Button  title="Add User" onPress={handleAddUserToChat} />
         </View>
       </Modal>
     </View>
