@@ -324,7 +324,7 @@ const MainPage = () => {
                 });
 
                 if (response.ok) {
-                    console.log('Message sent successfully');
+                    console.log('Message was sent successfully');
                 } else {
                     console.error('Message sending failed:', response.statusText);
                 }
@@ -520,7 +520,7 @@ const MainPage = () => {
     function renderAddUserModal() {
         return <Modal show={addUserModal} onHide={handleCloseAddUserModal}>
             <Modal.Header closeButton>
-                <Modal.Title>Add User</Modal.Title>
+                <Modal.Title>Add user to the chat room</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleAddUserSubmit}>
@@ -534,7 +534,7 @@ const MainPage = () => {
                         />
                     </Form.Group>
                     <Button variant="dark" type="submit" className={"mt-2"}>
-                        Add User
+                        Add
                     </Button>
                 </Form>
             </Modal.Body>
@@ -589,7 +589,7 @@ const MainPage = () => {
     function renderShowUsersModal() {
         return <Modal show={showUsersModal} onHide={handleCloseUsersModal}>
             <Modal.Header closeButton>
-                <Modal.Title>Chat Users</Modal.Title>
+                <Modal.Title>Chat users</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {helperRender? selectedChat &&
@@ -633,11 +633,11 @@ const MainPage = () => {
         return selectedChat ?
             <>
                 <Container fluid className={"d-flex mt-3 align-items-center"}>
-                    <h3 className={"flex-grow-1"}>{selectedChat.chat.chatName}</h3>
+                    <h3 className={"flex-grow-1 mt-1"}>{selectedChat.chat.chatName}</h3>
                     {selectedChat.chat.owner.id === user?.id? <OverlayTrigger
                         placement="top"
                         delay={{show: 250, hide: 400}}
-                        overlay={<Tooltip>Add User</Tooltip>}
+                        overlay={<Tooltip>Add user</Tooltip>}
                     >
                         <span className={"px-2 fs-4"} style={{cursor: "pointer"}}
                               onClick={handleAddUserClick}><Icon.Plus></Icon.Plus></span>
@@ -645,7 +645,7 @@ const MainPage = () => {
                     <OverlayTrigger
                         placement="top"
                         delay={{ show: 250, hide: 400 }}
-                        overlay={ <Tooltip>Show Users</Tooltip>}
+                        overlay={ <Tooltip>Show users</Tooltip>}
                     >
                         <span className={"ms-1 px-2 fs-4"} style={{cursor: "pointer"}} onClick={handleShowUsersClick}><Icon.PersonFill></Icon.PersonFill></span>
                     </OverlayTrigger>
@@ -654,8 +654,8 @@ const MainPage = () => {
                 <Container className={"flex-grow overflow-auto"}>
                     {helperRender? renderMessages() : <></>}
                 </Container>
-                <Row className={"mt-auto pb-5 mb-4"}>
-                    <hr/>
+                <Row className={"mt-auto pb-5 mb-5"}>
+                    <hr style={{ marginBottom: '28px' }} />
                     <Col xs={10} sm={11}>
                         <Form onSubmit={(e) => {
                             e.preventDefault();
